@@ -27,15 +27,16 @@ export default class App extends React.Component {
 
 
   render() {
+    console.log(this.state);
     return (
       <div>
         <h2>Todos:</h2>
         <ul> 
           { 
             todos.map((todo) => {
-              const { name } = todo
+              const { name, id, completed } = todo
               return (
-                <li>{name}</li>
+                <li key={id}>{name} { completed? <span>✔️</span> : <span></span>}</li>
               )
             })
           }
