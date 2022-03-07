@@ -1,4 +1,6 @@
 import React from 'react'
+import TodoList from './TodoList';
+import TodoForm from './Form';
 
 
 let idx = 0;
@@ -13,6 +15,7 @@ const todos = [
 const initialState = {
   todos
 }
+
 
 export default class App extends React.Component {
 
@@ -31,21 +34,10 @@ export default class App extends React.Component {
     return (
       <div>
         <h2>Todos:</h2>
-        <ul> 
-          { 
-            todos.map((todo) => {
-              const { name, id, completed } = todo
-              return (
-                <li key={id}>{name} { completed? <span>✔️</span> : <span></span>}</li>
-              )
-            })
-          }
-        </ul>
 
-        <form>
-          <input/>
-          <button>Add To List</button>
-        </form>
+        <TodoList todos={todos}/>
+
+        <TodoForm />
 
         <button>Hide Completed</button>
 
