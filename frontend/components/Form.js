@@ -1,9 +1,10 @@
 import React from 'react'
 
 export default class Form extends React.Component {
-  handleSubmit = (e) => {
+  onSubmit = (e) => {
     e.preventDefault();
-    this.props.handleAdd();
+    console.log(e.target);
+    this.props.onSubmit();
   }
 
   clearCompleted = (e) => {
@@ -18,9 +19,9 @@ export default class Form extends React.Component {
   render() {
     const { values } = this.props
     return (
-      <form>
+      <form onSubmit={this.onSubmit}>
         <input id="textInput" value={values.textInput} onChange={this.onChange}/>
-        <button onClick={this.handleSubmit}>Add Todo</button>
+        <button type="submit">Add Todo</button>
         <button onClick={this.clearCompleted}>Clear Completed</button>
       </form>
     )

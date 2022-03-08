@@ -24,20 +24,19 @@ export default class App extends React.Component {
 
   state = initialState
 
-  // handleClick
-
-
 
   handleAdd = () => {
 
+    const { form: {textInput } } = this.state
+    console.log(textInput);
     const newTodo = {
-      name: "Cook things",
-      id: Date.now(),
+      name: textInput,
+      id: getIdx(),
       completed: false
     };
 
-    this.setState({
-      ...this.state,
+    this.setState({...this.state,
+      form: initialState.form,
       todos: [...this.state.todos, newTodo]
     });
   }
@@ -64,9 +63,9 @@ export default class App extends React.Component {
       <div>
         <h2>Todos:</h2>
 
-        <TodoList todos={todos}/>
+        <TodoList todos={this.state.todos}/>
 
-        <Form onChange={this.changeInput} values={form} handleAdd={this.handleAdd} handleCompleted={this.handleCompleted}/>
+        <Form onChange={this.changeInput} values={form} onSubmit={this.handleAdd} handleCompleted={this.handleCompleted}/>
 
       </div>
     )
